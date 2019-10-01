@@ -1,0 +1,20 @@
+include ':app',
+        ':feature',
+        ':videocall-api',
+        ':videocall-impl',
+        ':profile-api',
+        ':profile-impl',
+        ':calendar-api',
+        ':messenger-api',
+        ':messenger-impl'
+
+rootProject.name='SandCastle'
+
+project(':feature').projectDir = new File(settingsDir, 'base/feature')
+project(':videocall-api').projectDir = new File(settingsDir, 'features/videocall-api')
+project(':videocall-impl').projectDir = new File(settingsDir, 'features/videocall-impl')
+project(':profile-api').projectDir = new File(settingsDir, 'features/profile-api')
+project(':profile-impl').projectDir = new File(settingsDir, 'features/profile-impl')
+project(':messenger-api').projectDir = new File(settingsDir, 'features/messenger-api')
+project(':messenger-impl').projectDir = new File(settingsDir, 'features/messenger-impl')
+project(':calendar-api').projectDir = new File(settingsDir, 'features/calendar-api')

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/base/feature" />
+            <option value="$PROJECT_DIR$/features/calendar-api" />
+            <option value="$PROJECT_DIR$/features/messenger-api" />
+            <option value="$PROJECT_DIR$/features/messenger-impl" />
+            <option value="$PROJECT_DIR$/features/profile-api" />
+            <option value="$PROJECT_DIR$/features/profile-impl" />
+            <option value="$PROJECT_DIR$/features/videocall-api" />
+            <option value="$PROJECT_DIR$/features/videocall-impl" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
