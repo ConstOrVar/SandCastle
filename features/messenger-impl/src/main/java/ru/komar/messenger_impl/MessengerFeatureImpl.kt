@@ -14,8 +14,15 @@ import javax.inject.Inject
 class MessengerFeatureImpl(
     override val context: Context
 ) : MessengerFeature,
-    Feature,
-    Versionable {
+    Feature {
+
+    companion object : Versionable {
+
+        override val key: String = "Messenger"
+
+        override val version: String = "2.0.0"
+
+    }
 
     @Inject
     lateinit var profileFeature: Projection<ProfileFeature>
@@ -27,10 +34,6 @@ class MessengerFeatureImpl(
     override fun intetForConversation(conversationUuid: UUID): Intent {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    override val key: String = "Messenger"
-
-    override val version: String = "2.0.0"
 
 }
 

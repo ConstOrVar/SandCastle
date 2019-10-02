@@ -16,8 +16,15 @@ import javax.inject.Inject
 class ProfileFeatureImpl(
     override val context: Context
 ) : ProfileFeature,
-    Feature,
-    Versionable {
+    Feature {
+
+    companion object : Versionable {
+
+        override val key: String = "Profile"
+
+        override val version: String = "5.1.2"
+
+    }
 
     @JvmField
     @Inject
@@ -31,7 +38,6 @@ class ProfileFeatureImpl(
     @Inject
     var calendarFeature: Projection<CalendarFeature>? = null
 
-
     override fun intentForProfileList(): Intent {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -39,10 +45,6 @@ class ProfileFeatureImpl(
     override fun intentForProfile(profileUuid: UUID): Intent {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    override val key: String = "Profile"
-
-    override val version: String = "5.1.2"
 
 }
 

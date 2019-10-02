@@ -1,19 +1,19 @@
-package ru.komar.sandcastle
+package ru.komar.sandcastle.versionchecker
 
 import ru.komar.base.Feature
 import ru.komar.base.Projection
 import ru.komar.versionable.VersionChecker
 import ru.komar.versionable.Versionable
 
-class VersionCheckerProjection<out T>(
+class VersionCheckingProjection<T>(
     private val checker: VersionChecker,
     private val versionable: Versionable,
     private val target: T
-) : Projection<T> where T: Feature, T: Versionable {
+) : Projection<T> where T: Feature {
 
-    override fun call(block: T.() -> Unit) {
+    override fun source(): T {
         checkVersion()
-        target.block()
+        return target
     }
 
     @Throws(IllegalStateException::class)
