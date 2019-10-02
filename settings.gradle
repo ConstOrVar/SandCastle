@@ -1,5 +1,6 @@
 include ':app',
         ':feature',
+        ':versionable',
         ':videocall-api',
         ':videocall-impl',
         ':profile-api',
@@ -11,6 +12,7 @@ include ':app',
 rootProject.name='SandCastle'
 
 project(':feature').projectDir = new File(settingsDir, 'base/feature')
+project(':versionable').projectDir = new File(settingsDir, 'base/versionable')
 project(':videocall-api').projectDir = new File(settingsDir, 'features/videocall-api')
 project(':videocall-impl').projectDir = new File(settingsDir, 'features/videocall-impl')
 project(':profile-api').projectDir = new File(settingsDir, 'features/profile-api')

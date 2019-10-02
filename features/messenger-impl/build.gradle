@@ -31,6 +31,7 @@ dependencies {
     implementation "javax.inject:javax.inject:1"
 
     implementation project(':feature')
+    implementation project(':versionable')
     implementation project(':messenger-api')
     implementation project(':profile-api')
 }

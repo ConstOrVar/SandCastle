@@ -4,12 +4,21 @@ import android.content.Context
 import android.content.Intent
 import ru.komar.base.Feature
 import ru.komar.base.FeatureOwner
+import ru.komar.base.Projection
+import ru.komar.messenger.MessengerFeature
+import ru.komar.profile_api.ProfileFeature
+import ru.komar.versionable.Versionable
 import java.util.*
 import javax.inject.Inject
 
-class MessengerFeatureImpl(override val context: Context) : ru.komar.messenger.MessengerFeature,
-    Feature {
-    private lateinit var profileFeature: ru.komar.profile_api.ProfileFeature
+class MessengerFeatureImpl(
+    override val context: Context
+) : MessengerFeature,
+    Feature,
+    Versionable {
+
+    @Inject
+    lateinit var profileFeature: Projection<ProfileFeature>
 
     override fun intetForConversationList(): Intent {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -19,10 +28,9 @@ class MessengerFeatureImpl(override val context: Context) : ru.komar.messenger.M
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    @Inject
-    fun setProfileFeature(profileFeature: ru.komar.profile_api.ProfileFeature) {
-        this.profileFeature = profileFeature
-    }
+    override val key: String = "Messenger"
+
+    override val version: String = "2.0.0"
 
 }
 

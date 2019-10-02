@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base/feature" />
+            <option value="$PROJECT_DIR$/base/versionable" />
             <option value="$PROJECT_DIR$/features/calendar-api" />
             <option value="$PROJECT_DIR$/features/messenger-api" />
             <option value="$PROJECT_DIR$/features/messenger-impl" />

@@ -5,17 +5,24 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import ru.komar.base.Projection
 import ru.komar.calendar_api.CalendarFeature
 import ru.komar.messenger_impl.MessengerFeatureInjector
 import ru.komar.messenger_impl.MessengerFeatureProvider
+import ru.komar.profile_api.ProfileFeature
+import ru.komar.profile_impl.ProfileFeatureImpl
 import ru.komar.profile_impl.ProfileFeatureInjector
 import ru.komar.profile_impl.ProfileFeatureProvider
+import ru.komar.sandcastle.VersionCheckerProjection
 import ru.komar.sandcastle.videocall.api.VideoCallFeature
+import ru.komar.versionable.VersionChecker
+import ru.komar.versionable.Versionable
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
+        VersionCheckerModule::class,
         ProfileModule::class,
         MessengerModule::class,
         CalendarModule::class,
@@ -40,14 +47,17 @@ internal class ProfileModule {
 
     @Singleton
     @Provides
-    fun provideProfileFeatureImpl(context: Context): ru.komar.profile_impl.ProfileFeatureImpl {
+    fun provideProfileFeatureImpl(context: Context): ProfileFeatureImpl {
         return ru.komar.profile_impl.ProfileFeatureImpl(context)
     }
 
     @Singleton
     @Provides
-    fun provideProfileFeature(impl: ru.komar.profile_impl.ProfileFeatureImpl): ru.komar.profile_api.ProfileFeature {
-        return impl
+    fun provideProfileFeatureProxy(
+        impl: ProfileFeatureImpl,
+        checker: VersionChecker
+    ): Projection<@JvmWildcard ProfileFeature> {
+        return VersionCheckerProjection(checker, impl, impl)
     }
 
 }
@@ -63,8 +73,11 @@ internal class MessengerModule {
 
     @Singleton
     @Provides
-    fun provideMessengerFeature(impl: ru.komar.messenger_impl.MessengerFeatureImpl): ru.komar.messenger.MessengerFeature {
-        return impl
+    fun provideMessengerFeatureProxy(
+        impl: ru.komar.messenger_impl.MessengerFeatureImpl,
+        checker: VersionChecker
+    ): Projection<@JvmWildcard ru.komar.messenger.MessengerFeature> {
+        return VersionCheckerProjection(checker, impl, impl)
     }
 
 }
@@ -74,7 +87,7 @@ internal class VideoCallModule {
 
     @Singleton
     @Provides
-    fun provideVideoCallFeature(context: Context): VideoCallFeature? {
+    fun provideVideoCallFeatureProxy(context: Context): Projection<@JvmWildcard VideoCallFeature>? {
         return null
     }
 
@@ -85,8 +98,25 @@ internal class CalendarModule {
 
     @Singleton
     @Provides
-    fun provideCalendarFeature(context: Context): CalendarFeature? {
+    fun provideCalendarFeatureProxy(context: Context): Projection<@JvmWildcard CalendarFeature>? {
         return null
+    }
+
+}
+
+@Module
+internal class VersionCheckerModule {
+
+    @Singleton
+    @Provides
+    fun provideVersionChecker(): VersionChecker {
+        return object : VersionChecker {
+
+            override fun check(versionable: Versionable): Boolean {
+                return true
+            }
+
+        }
     }
 
 }

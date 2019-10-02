@@ -28,12 +28,4 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "javax.inject:javax.inject:1"
-
-    implementation project(':feature')
-    implementation project(':versionable')
-    implementation project(':profile-api')
-    implementation project(':videocall-api')
-    implementation project(':calendar-api')
-    implementation project(':messenger-api')
 }

@@ -36,6 +36,7 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.24'
 
     implementation project(':feature')
+    implementation project(':versionable')
     implementation project(':videocall-api')
     implementation project(':videocall-impl')
     implementation project(':profile-api')
