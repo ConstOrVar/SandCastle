@@ -1,5 +1,6 @@
 package ru.komar.sandcastle
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -34,6 +35,14 @@ class TestFragment : Fragment(), PublicFragmentApi {
 
     override val fragment: Fragment = this
 
+}
+
+fun <T> T.createTestFragment(): PublicFragmentApi where T: TestFragment.Host, T: Fragment {
+    return TestFragment()
+}
+
+fun <T> T.createTestFragment(): PublicFragmentApi where T: TestFragment.Host, T: Activity {
+    return TestFragment()
 }
 
 class TestFragmentScopedContext internal constructor() {

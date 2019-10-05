@@ -1,14 +1,16 @@
 package ru.komar.messenger_impl
 
 import android.content.Context
-import android.content.Intent
 import ru.komar.base.Feature
 import ru.komar.base.FeatureOwner
 import ru.komar.base.Projection
+import ru.komar.messenger.conversation.ConversationEntry
+import ru.komar.messenger.conversationlist.ConversationListEntry
 import ru.komar.messenger.MessengerFeature
+import ru.komar.messenger_impl.conversation.DefaultConversationEntry
+import ru.komar.messenger_impl.conversationlist.DefaultConversationListEntry
 import ru.komar.profile_api.ProfileFeature
 import ru.komar.versionable.Versionable
-import java.util.*
 import javax.inject.Inject
 
 class MessengerFeatureImpl(
@@ -27,14 +29,13 @@ class MessengerFeatureImpl(
     @Inject
     lateinit var profileFeature: Projection<ProfileFeature>
 
-    override fun intetForConversationList(): Intent {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun conversationListEntry(): ConversationListEntry {
+        return DefaultConversationListEntry()
     }
 
-    override fun intetForConversation(conversationUuid: UUID): Intent {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun conversationEntry(): ConversationEntry {
+        return DefaultConversationEntry()
     }
-
 }
 
 fun Context.messengerFeature(): MessengerFeatureImpl {
